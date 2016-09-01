@@ -31,13 +31,15 @@ void Dietpi_Software::Create(void)
     if(file.is_open())
     {
        
-        for(int i = 0; i < iTotal_Software_Indexs; ++i)
-        {
-            file >> sSoftwareName[i];
-			printf("%s\n", sSoftwareName[i].c_str());
-
-        }
-
+ 		string line;
+		while (getline(file, line))
+		{
+			int index = 0;
+			sSoftwareName[index] = line;
+			printf("sSoftwareName %s\n", sSoftwareName[index].c_str());
+			index++;
+		}
+       
 		file.close();
 
     }
@@ -49,14 +51,16 @@ void Dietpi_Software::Create(void)
 	file.open("/tmp/dietpi-software/weblist_export/software_desc");
     if(file.is_open())
     {
+
+		string line;
+		while (getline(file, line))
+		{
+			int index = 0;
+			sSoftwareDesc[index] = line;
+			printf("sSoftwareDesc %s\n", sSoftwareDesc[index].c_str());
+			index++;
+		}
        
-        for(int i = 0; i < iTotal_Software_Indexs; ++i)
-        {
-			file >> sSoftwareDesc[i];
-			printf("%s\n", sSoftwareDesc[i].c_str());
-
-        }
-
  		file.close();
 
    }
@@ -69,16 +73,38 @@ void Dietpi_Software::Create(void)
     if(file.is_open())
     {
        
-        for(int i = 0; i < iTotal_Software_Indexs; ++i)
+	    for(int i = 0; i < iTotal_Software_Indexs; ++i)
         {
             file >> iSoftwareInstalledState[i];
-			printf("%i\n", iSoftwareInstalledState[i]);
+			printf("iSoftwareInstalledState %i\n", iSoftwareInstalledState[i]);
 
         }
 
  		file.close();
 
    }
+
+	file.clear();
+
+	//Grab url links for online docs
+	sSoftwareUrlDocs = new string[iTotal_Software_Indexs];
+	file.open("/tmp/dietpi-software/weblist_export/software_urldocs");
+    if(file.is_open())
+    {
+       
+ 		string line;
+		while (getline(file, line))
+		{
+			int index = 0;
+			sSoftwareUrlDocs[index] = "http://dietpi.com/phpbb/viewtopic.php?";
+			sSoftwareUrlDocs[index] += line;
+			printf("sSoftwareUrlDocs %s\n", sSoftwareUrlDocs[index].c_str());
+			index++;
+		}
+       
+		file.close();
+
+    }
 
 	file.clear();
 	
@@ -90,6 +116,7 @@ void Dietpi_Software::Destroy(void)
 	//-------------------------------------------------------------
 	delete [] sSoftwareName;
 	delete [] sSoftwareDesc;
+	delete [] sSoftwareUrlDocs;
 	delete [] iSoftwareInstalledState;
 	//-------------------------------------------------------------
 }

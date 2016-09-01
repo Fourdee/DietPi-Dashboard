@@ -10,6 +10,7 @@ class Dietpi_Software
 		int iTotal_Software_Indexs;
 		string* sSoftwareName;
 		string* sSoftwareDesc;
+		string* sSoftwareUrlDocs;
 		int* iSoftwareInstalledState;
 		//---------------------------------------------------------
 		//functions

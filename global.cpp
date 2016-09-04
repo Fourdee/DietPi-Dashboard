@@ -3,6 +3,7 @@
 //------------------------------------------------------
 //Classes
 //------------------------------------------------------
+Dietpi_Core cDietPi_Core;
 Dietpi_Software cDietPi_Software;
 Web_Dash cWebDash;
 
@@ -29,5 +30,4 @@ string exec(const char* cmd) {
     pclose(pipe);
     return result;
 
-   // delete [] buffer;
 }

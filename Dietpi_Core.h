@@ -1,33 +1,26 @@
 #pragma once
 //-----------------------------------------------------------------
+// Core settings and information for this DietPi system.
 //-----------------------------------------------------------------
-class Dietpi_Software
+class Dietpi_Core
 {
 	//-------------------------------------------------------------
 	public:
 		//---------------------------------------------------------
 		//data
-		int iTotal_Software_Indexs;
-		string* sSoftwareName;
-		string* sSoftwareDesc;
-		string* sSoftwareUrlDocs;
-		signed short* iSoftwareInstalledState;
-		signed short* iSoftwareCategoryIndex;
-
-		signed short* iSoftwareAvailableForHwModel;
-		signed short* iSoftwareAvailableForHwArch;
+		signed short iHw_Model;
+		signed short iHw_Arch;
+		signed short iDistro;
+		string sDeviceName;
 		//---------------------------------------------------------
 		//functions
 		void Create(void);
 		void Destroy(void);
 		void Update(void);
-		bool Install_Software(signed short index); //returns 1=success
-		bool Remove_Software(signed short index); //returns 1=success
-		bool Software_Installed(signed short index); //returns 1=yes
 		//---------------------------------------------------------
 		//constructors
-		Dietpi_Software(void);
-		~Dietpi_Software(void);
+		Dietpi_Core(void);
+		~Dietpi_Core(void);
 		//---------------------------------------------------------
 
 	//-------------------------------------------------------------
@@ -36,5 +29,6 @@ class Dietpi_Software
 		//functions
 		void ZeroData(void);
 		//---------------------------------------------------------
+
 	//-------------------------------------------------------------
 };

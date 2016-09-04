@@ -8,10 +8,32 @@
 //chmod +x dietpi-dashboard
 //./dietpi-dashboard
 
+//VS CODE keybinds
+//ctrl+k ctrl+c = Comment
+//ctrl+k ctrl+u = Uncomment
+
 int main()
 {
 
+    //Grab core DietPi and System data
+    cDietPi_Core.Update();
+
+    //init DietPi-Software vars
     cDietPi_Software.Create();
+
+    // //Install/remove software test
+    // cDietPi_Software.Install_Software(3);
+    // cDietPi_Software.Remove_Software(3);
+
+    // //Software installed test
+    // if ( cDietPi_Software.Software_Installed(103) )
+    // {
+    //     cout << "yes";
+    // }
+    // else
+    // {
+    //     cout << "no";
+    // }
 
     cDietPi_Software.Update();
 

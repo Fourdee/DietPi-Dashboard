@@ -26,7 +26,7 @@ void Dietpi_Software::Create(void)
 	ifstream file;
 
 	//Grab Names
-	sSoftwareName = new string[iTotal_Software_Indexs];
+	sSoftwareName = new string[iTotal_Software_Indexs]{};
 	file.open("/tmp/dietpi-software/weblist_export/software_name");
     if(file.is_open())
     {
@@ -47,7 +47,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab descriptions
-	sSoftwareDesc = new string[iTotal_Software_Indexs];
+	sSoftwareDesc = new string[iTotal_Software_Indexs]{};
 	file.open("/tmp/dietpi-software/weblist_export/software_desc");
     if(file.is_open())
     {
@@ -68,7 +68,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab installed state
-	iSoftwareInstalledState = new int[iTotal_Software_Indexs];
+	iSoftwareInstalledState = new signed short[iTotal_Software_Indexs]{};
 	file.open("/tmp/dietpi-software/weblist_export/software_installed_state");
     if(file.is_open())
     {
@@ -87,7 +87,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab url links for online docs
-	sSoftwareUrlDocs = new string[iTotal_Software_Indexs];
+	sSoftwareUrlDocs = new string[iTotal_Software_Indexs]{};
 	file.open("/tmp/dietpi-software/weblist_export/software_urldocs");
     if(file.is_open())
     {
@@ -107,6 +107,59 @@ void Dietpi_Software::Create(void)
     }
 
 	file.clear();
+
+	//Grab cat index
+	iSoftwareCategoryIndex = new signed short[iTotal_Software_Indexs]{};
+	file.open("/tmp/dietpi-software/weblist_export/category_index");
+    if(file.is_open())
+    {
+       
+	    for(int i = 0; i < iTotal_Software_Indexs; ++i)
+        {
+            file >> iSoftwareCategoryIndex[i];
+			printf("iSoftwareCategoryIndex %i\n", iSoftwareCategoryIndex[i]);
+
+        }
+
+ 		file.close();
+
+   }
+
+	file.clear();
+
+	//Grab available for HW_MODEL
+	iSoftwareAvailableForHwModel = new signed short[iTotal_Software_Indexs]{};
+	file.open("/tmp/dietpi-software/weblist_export/software_available_hw_model");
+    if(file.is_open())
+    {
+       
+	    for(int i = 0; i < iTotal_Software_Indexs; ++i)
+        {
+            file >> iSoftwareAvailableForHwModel[i];
+			printf("iSoftwareAvailableForHwModel %i\n", iSoftwareAvailableForHwModel[i]);
+
+        }
+
+ 		file.close();
+
+   }
+
+	//Grab available for HW_ARCH
+	iSoftwareAvailableForHwArch = new signed short[iTotal_Software_Indexs]{};
+	file.open("/tmp/dietpi-software/weblist_export/software_available_hw_arch");
+    if(file.is_open())
+    {
+       
+	    for(int i = 0; i < iTotal_Software_Indexs; ++i)
+        {
+			file >> iSoftwareAvailableForHwArch[i];
+			printf("iSoftwareAvailableForHwArch %i\n", iSoftwareAvailableForHwArch[i]);
+
+        }
+
+ 		file.close();
+
+   }
 	
 	//-------------------------------------------------------------
 }
@@ -118,6 +171,10 @@ void Dietpi_Software::Destroy(void)
 	delete [] sSoftwareDesc;
 	delete [] sSoftwareUrlDocs;
 	delete [] iSoftwareInstalledState;
+	delete [] iSoftwareCategoryIndex;
+
+	delete [] iSoftwareAvailableForHwModel;
+	delete [] iSoftwareAvailableForHwArch;
 	//-------------------------------------------------------------
 }
 
@@ -130,5 +187,36 @@ void Dietpi_Software::ZeroData(void)
 void Dietpi_Software::Update(void)
 {
 	//-------------------------------------------------------------
+	//-------------------------------------------------------------
+}
+bool Dietpi_Software::Install_Software(signed short index)
+{
+	//-------------------------------------------------------------
+	string command="/DietPi/dietpi/dietpi-software install ";
+	command += to_string(index);
+	string result = exec(command.c_str());
+	//TODO: Return success
+	//-------------------------------------------------------------
+}
+
+bool Dietpi_Software::Remove_Software(signed short index)
+{
+	//-------------------------------------------------------------
+	string command="/DietPi/dietpi/dietpi-software uninstall ";
+	command += to_string(index);
+	string result = exec(command.c_str());
+	//TODO: Return success
+	//-------------------------------------------------------------
+}
+
+bool Dietpi_Software::Software_Installed(signed short index)
+{
+	//-------------------------------------------------------------
+	bool bReturn = false;
+	if ( iSoftwareInstalledState[index] == 2 )
+	{
+		 bReturn = true;
+	}
+	return bReturn;
 	//-------------------------------------------------------------
 }

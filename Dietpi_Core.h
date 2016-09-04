@@ -12,6 +12,8 @@ class Dietpi_Core
 		signed short iHw_Arch;
 		signed short iDistro;
 		string sDeviceName;
+		string sDeviceArch;
+		string sDeviceUUID;
 		//---------------------------------------------------------
 		//functions
 		void Create(void);

@@ -12,7 +12,7 @@
 //ctrl+k ctrl+c = Comment
 //ctrl+k ctrl+u = Uncomment
 
-int main()
+int main (int argc, char ** argv)
 {
 
     //Grab core DietPi and System data

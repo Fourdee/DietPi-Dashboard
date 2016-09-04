@@ -5,7 +5,7 @@
 //------------------------------------------------------
 Dietpi_Core cDietPi_Core;
 Dietpi_Software cDietPi_Software;
-Web_Dash cWebDash;
+Web_Dash cWeb_Dash;
 
 //------------------------------------------------------
 //Global functions

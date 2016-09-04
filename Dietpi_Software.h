@@ -6,16 +6,21 @@ class Dietpi_Software
 	//-------------------------------------------------------------
 	public:
 		//---------------------------------------------------------
-		//data
-		int iTotal_Software_Indexs;
+		//General
+		int MAX_SOFTWARE_INDEX;
 		string* sSoftwareName;
 		string* sSoftwareDesc;
 		string* sSoftwareUrlDocs;
 		signed short* iSoftwareInstalledState;
 		signed short* iSoftwareCategoryIndex;
-
 		signed short* iSoftwareAvailableForHwModel;
 		signed short* iSoftwareAvailableForHwArch;
+		
+		//Categories
+		int MAX_CATEGORY_INDEX_DIETPI;
+		int MAX_CATEGORY_INDEX_LINUX;
+		string* sCategoryDesc_DietPi;
+		string* sCategoryDesc_Linux;
 		//---------------------------------------------------------
 		//functions
 		void Create(void);

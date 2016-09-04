@@ -21,7 +21,7 @@ extern Dietpi_Software cDietPi_Software;
 extern Dietpi_Core cDietPi_Core;
 
 #include "Web_Dash.h"
-extern Web_Dash cWebDash;
+extern Web_Dash cWeb_Dash;
 
 //------------------------------------------------------
 //Global functions

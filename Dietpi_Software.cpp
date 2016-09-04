@@ -26,7 +26,7 @@ void Dietpi_Software::Create(void)
 	ifstream file;
 
 	//Grab Names
-	sSoftwareName = new string[MAX_SOFTWARE_INDEX]{};
+	sSoftwareName = new string[MAX_SOFTWARE_INDEX]{"NULL"};
 	file.open("/tmp/dietpi-software/weblist_export/software_name");
     if(file.is_open())
     {
@@ -35,7 +35,10 @@ void Dietpi_Software::Create(void)
 		while (getline(file, line))
 		{
 			int index = 0;
-			sSoftwareName[index] = line;
+			if ( ! line.empty() )
+			{
+				sSoftwareName[index] = line;
+			}
 			printf("sSoftwareName %s\n", sSoftwareName[index].c_str());
 			index++;
 		}
@@ -47,7 +50,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab descriptions
-	sSoftwareDesc = new string[MAX_SOFTWARE_INDEX]{};
+	sSoftwareDesc = new string[MAX_SOFTWARE_INDEX]{"NULL"};
 	file.open("/tmp/dietpi-software/weblist_export/software_desc");
     if(file.is_open())
     {
@@ -56,7 +59,10 @@ void Dietpi_Software::Create(void)
 		while (getline(file, line))
 		{
 			int index = 0;
-			sSoftwareDesc[index] = line;
+			if ( ! line.empty() )
+			{
+				sSoftwareDesc[index] = line;
+			}	
 			printf("sSoftwareDesc %s\n", sSoftwareDesc[index].c_str());
 			index++;
 		}
@@ -68,7 +74,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab installed state
-	iSoftwareInstalledState = new signed short[MAX_SOFTWARE_INDEX]{};
+	iSoftwareInstalledState = new signed short[MAX_SOFTWARE_INDEX]{0};
 	file.open("/tmp/dietpi-software/weblist_export/software_installed_state");
     if(file.is_open())
     {
@@ -87,7 +93,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab url links for online docs
-	sSoftwareUrlDocs = new string[MAX_SOFTWARE_INDEX]{};
+	sSoftwareUrlDocs = new string[MAX_SOFTWARE_INDEX]{"NULL"};
 	file.open("/tmp/dietpi-software/weblist_export/software_urldocs");
     if(file.is_open())
     {
@@ -96,8 +102,11 @@ void Dietpi_Software::Create(void)
 		while (getline(file, line))
 		{
 			int index = 0;
-			sSoftwareUrlDocs[index] = "http://dietpi.com/phpbb/viewtopic.php?";
-			sSoftwareUrlDocs[index] += line;
+			if ( ! line.empty() )
+			{
+				sSoftwareUrlDocs[index] = "http://dietpi.com/phpbb/viewtopic.php?";
+				sSoftwareUrlDocs[index] += line;
+			}
 			printf("sSoftwareUrlDocs %s\n", sSoftwareUrlDocs[index].c_str());
 			index++;
 		}
@@ -109,7 +118,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab cat index
-	iSoftwareCategoryIndex = new signed short[MAX_SOFTWARE_INDEX]{};
+	iSoftwareCategoryIndex = new signed short[MAX_SOFTWARE_INDEX]{0};
 	file.open("/tmp/dietpi-software/weblist_export/category_index");
     if(file.is_open())
     {
@@ -128,7 +137,7 @@ void Dietpi_Software::Create(void)
 	file.clear();
 
 	//Grab available for HW_MODEL
-	iSoftwareAvailableForHwModel = new signed short[MAX_SOFTWARE_INDEX]{};
+	iSoftwareAvailableForHwModel = new signed short[MAX_SOFTWARE_INDEX]{0};
 	file.open("/tmp/dietpi-software/weblist_export/software_available_hw_model");
     if(file.is_open())
     {
@@ -145,7 +154,7 @@ void Dietpi_Software::Create(void)
    }
 
 	//Grab available for HW_ARCH
-	iSoftwareAvailableForHwArch = new signed short[MAX_SOFTWARE_INDEX]{};
+	iSoftwareAvailableForHwArch = new signed short[MAX_SOFTWARE_INDEX]{0};
 	file.open("/tmp/dietpi-software/weblist_export/software_available_hw_arch");
     if(file.is_open())
     {
@@ -165,7 +174,7 @@ void Dietpi_Software::Create(void)
 	MAX_CATEGORY_INDEX_DIETPI = stoi ( exec("cat /tmp/dietpi-software/weblist_export/category_dietpi_total") );
 	MAX_CATEGORY_INDEX_LINUX = stoi ( exec("cat /tmp/dietpi-software/weblist_export/category_linux_total") );
 
-	sCategoryDesc_DietPi = new string[MAX_CATEGORY_INDEX_DIETPI]{};
+	sCategoryDesc_DietPi = new string[MAX_CATEGORY_INDEX_DIETPI]{"NULL"};
 	file.open("/tmp/dietpi-software/weblist_export/category_dietpi_desc");
     if(file.is_open())
     {
@@ -174,7 +183,10 @@ void Dietpi_Software::Create(void)
 		while (getline(file, line))
 		{
 			int index = 0;
-			sCategoryDesc_DietPi[index] = line;
+			if ( ! line.empty() )
+			{
+				sCategoryDesc_DietPi[index] = line;
+			}
 			printf("sCategoryDesc_DietPi %s\n", sCategoryDesc_DietPi[index].c_str());
 			index++;
 		}
@@ -185,7 +197,7 @@ void Dietpi_Software::Create(void)
 
 	file.clear();
 
-	sCategoryDesc_Linux = new string[MAX_CATEGORY_INDEX_LINUX]{};
+	sCategoryDesc_Linux = new string[MAX_CATEGORY_INDEX_LINUX]{"NULL"};
 	file.open("/tmp/dietpi-software/weblist_export/category_linux_desc");
     if(file.is_open())
     {
@@ -194,7 +206,10 @@ void Dietpi_Software::Create(void)
 		while (getline(file, line))
 		{
 			int index = 0;
-			sCategoryDesc_Linux[index] = line;
+			if ( ! line.empty() )
+			{
+				sCategoryDesc_Linux[index] = line;
+			}
 			printf("sCategoryDesc_Linux %s\n", sCategoryDesc_Linux[index].c_str());
 			index++;
 		}

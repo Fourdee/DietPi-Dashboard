@@ -1,5 +1,9 @@
 #include "global.h"
 
+// //Crow libary
+// #include "amalgamate/crow_all.h"
+
+
 Web_Dash::Web_Dash(void)
 {
 	//-------------------------------------------------------------
@@ -34,5 +38,15 @@ void Web_Dash::ZeroData(void)
 void Web_Dash::Update(void)
 {
 	//-------------------------------------------------------------
+	// crow::SimpleApp app;
+
+    // CROW_ROUTE(app, "/")([](){
+    //     return "Hello world";
+    // });
+
+    // app.port(1337).multithreaded().run();
+
+
+
 	//-------------------------------------------------------------
 }

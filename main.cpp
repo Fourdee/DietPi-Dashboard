@@ -3,7 +3,8 @@
 #include "main.h"
 #include "global.h"
 
-//apt-get install -y g++ build-essential #libboost-dev
+//apt-get install -y g++ build-essential libboost-dev libboost-system-dev
+//g++ -std=c++11 -lboost_system -lpthread *.cpp -o dietpi-dashboard
 //g++ -std=c++11 *.cpp -o dietpi-dashboard
 //chmod +x dietpi-dashboard
 //./dietpi-dashboard
@@ -38,7 +39,9 @@ int main (int argc, char ** argv)
     cDietPi_Software.Update();
 
     cDietPi_Software.Destroy();
-    
+
+    cWeb_Dash.Update();
+
     return 0;
 
 }
